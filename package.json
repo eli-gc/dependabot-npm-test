@@ -151,7 +151,7 @@
     "jwt-encode": "^1.0.1",
     "lint-staged": "^13.3.0",
     "patch-package": "^7.0.2",
-    "prettier": "^2.8.8",
+    "prettier": "^3.4.2",
     "react-native-codegen": "^0.71.6",
     "react-test-renderer": "18.3.1",
     "ts-jest": "29.2.5",
