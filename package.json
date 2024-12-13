@@ -22,6 +22,7 @@
     "compile": "./compile.sh"
   },
   "dependencies": {
+    "@3nickels/data-modules": "^0.2.610",
     "@aesop-fables/containr": "^0.6.1",
     "@aesop-fables/containr-axios": "^0.3.6",
     "@aesop-fables/containr-react": "^0.4.1",
