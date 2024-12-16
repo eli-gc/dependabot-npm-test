@@ -8,7 +8,8 @@ registries:
   npm-data-module:
     type: npm-registry
     url: https://pkgs.dev.azure.com/guidedchoice/_packaging/data-projections/npm/registry/
-    token: guidedchoice:${{ secrets.TEST_SECRET}}
+    username: eli@guidedchoice.com
+    password: ${{ secrets.NPM_TOKEN }}
 
 updates:
   - package-ecosystem: npm
