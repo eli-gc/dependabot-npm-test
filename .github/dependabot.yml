@@ -8,7 +8,7 @@ registries:
   npm-data-module:
     type: npm-registry
     url: https://pkgs.dev.azure.com/guidedchoice/_packaging/data-projections/npm/registry/
-    token: guidedchoice:${{ secrets.NPM_TOKEN }}
+    token: guidedchoice:testString
 
 updates:
   - package-ecosystem: npm
