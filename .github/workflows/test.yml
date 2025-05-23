@@ -6,5 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl -I \
-            https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-kafka/3.2.4/spring-boot-starter-kafka-3.2.4.jar
+          curl -s "https://search.maven.org/solrsearch/select?q=g:%22org.springframework.boot%22+a:%22spring-boot-starter-kafka%22&rows=20&wt=json" | jq -r '.response.docs[0].versionCount, .response.docs[0].latestVersion'
+# -> e.g. 51   and 3.2.3
+
