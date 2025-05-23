@@ -1,0 +1,10 @@
+name: check-central
+on: [workflow_dispatch]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -I \
+            https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-kafka/3.2.4/spring-boot-starter-kafka-3.2.4.jar
