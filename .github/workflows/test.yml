@@ -2,10 +2,24 @@ name: check-central
 on: [workflow_dispatch]
 
 jobs:
-  check:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          curl -s "https://search.maven.org/solrsearch/select?q=g:%22org.springframework.boot%22+a:%22spring-boot-starter-kafka%22&rows=20&wt=json" | jq -r '.response.docs[0].versionCount, .response.docs[0].latestVersion'
-# -> e.g. 51   and 3.2.3
+      - name: 1. What versions exist?
+        run: |
+          curl -s \
+            "https://search.maven.org/solrsearch/select?core=gav&q=g:%22org.springframework.boot%22+AND+a:%22spring-boot-starter-kafka%22&rows=5&wt=json" |
+          jq -r '.response.docs[] | .v' | head
+      - name: 2. Download the **POM** for 3.2.3 (should be 200)
+        run: |
+          curl -I \
+            https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-kafka/3.2.3/spring-boot-starter-kafka-3.2.3.pom
+      - name: 3. Demonstrate that the JAR is not published (expected 404)
+        run: |
+          curl -I \
+            https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-kafka/3.2.3/spring-boot-starter-kafka-3.2.3.jar || true
+      - name: 4. Let Maven resolve the dependency (uses Central)
+        run: |
+          mvn -q dependency:get \
+              -Dartifact=org.springframework.boot:spring-boot-starter-kafka:3.2.3:pom
 
